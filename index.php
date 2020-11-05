@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    
     <main class="container">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
@@ -20,42 +21,12 @@
                 <p class="lead">Who's your nemisis?</p>
             </div>
         </div>
+        <a href="/add-hero.php">Add Hero</a>
         <div class="row">
 
 <?php
 
-function start_server()
-{
-    $servername = "localhost";
-    $username = "root";
-    $password = "root";
-    $database = "sqlheroes";
-
-    //create connection
-
-    $conn = new mysqli($servername, $username, $password, $database);
-
-    //check connection
-    if ($conn->connection) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    // echo "Connected successfully";
-    return $conn;
-}
-
-
-function stop_server($conn)
-{
-    $conn->close();
-}
-
-function get_heroes()
-{
-    $conn = start_server();
-    $data = $conn->query("SELECT * FROM heroes");
-    stop_server($conn);
-    return $data;
-}
+include 'functions.php';
 
 // $sql = "SELECT name, about_me FROM heroes";
 $result = get_heroes();
