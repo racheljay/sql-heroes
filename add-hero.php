@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Create Heros</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,15 +9,79 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-      <a href="/index.php">Home</a>
-      <h1>create heroes</h1>
+</head>
+
+<body>
+    <a href="/index.php">Home</a>
+    <div class="container">
+    <h1>create heroes</h1>
+
+    <?php
+
+    include 'functions.php';
+
+
+    ?>
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <!-- Id: <input type="text" name="id"><br> -->
+        Name: <input type="text" name="name"><br>
+        About: <input type="text" name="about"><br>
+        Biography: <input type="text" name="bio">
+        <input type="submit">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // collect value of input field
+        // $id = $_POST['id'];
+        $name = $_POST['name'];
+        // $name = htmlspecialchars($name);
+        $about = $_POST['about'];
+        // $about = htmlspecialchars($about);
+        $bio = $_POST['bio'];
+        // $bio = htmlspecialchars($bio);
+        // var_dump($_POST);
+        // if (empty($id)) {
+        //     echo "id is empty";
+        // } else {
+        //     echo $id;
+        // }
+        
+        if (empty($name)) {
+            echo "name is empty";
+        } else {
+            echo $name;
+        }
+
+        if (empty($about)) {
+            echo "about is empty";
+        } else {
+            echo $about;
+        }
+        
+        if (empty($bio)) {
+            echo "bio is empty";
+        } else {
+            echo $bio;
+        }
+        create_hero($name, $about, $bio);
+    }
+    ?>
+</div>
+    <!-- <div class="container">
       
+      <form action=""></form>
+      <input class="form-control" type="text" placeholder="Id">
+      <input class="form-control" type="text" placeholder="Name">
+      <input class="form-control" type="text" placeholder="About Me">
+      <input class="form-control" type="text" placeholder="Biography">
+      </div> -->
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+</body>
+
 </html>

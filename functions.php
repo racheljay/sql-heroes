@@ -15,7 +15,7 @@ function start_server()
         die("Connection failed: " . $conn->connect_error);
     }
 
-    //    create_hero($conn);
+    // create_hero($conn);
     // modify_hero($conn);
     // delete_hero($conn);
 
@@ -23,16 +23,33 @@ function start_server()
     return $conn;
 }
 
-function create_hero($conn)
+function create_hero($name, $about, $bio)
 {
-    $sql = "INSERT INTO heroes (id, name, about_me, biography)
-    VALUES ('8', 'Pam', 'She likes art', 'Mixed berry yogurt is her favorite')";
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "root";
+    $database = "sqlheroes";
+
+    //create connection
+
+    $conn = new mysqli($servername, $username, $password, $database);
+
+    //check connection
+    if ($conn->connection) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "INSERT INTO heroes (name, about_me, biography)
+    VALUES ('$name', '$about', '$bio')";
 
     if ($conn->query($sql) === TRUE) {
         // echo "New record created";
     } else {
         echo "ERROR: " . $sql . "<br>" . $conn->error;
     }
+
+    return $conn;
 }
 
 function modify_hero($conn)
