@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Delete Heroes</title>
+    <title>Edit Hero</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,31 +12,37 @@
 </head>
 
 <body>
-
     <a href="/index.php">Home</a>
+
     <div class="container">
-        <h1>remove heroes:</h1>
+        <h1>edit details:</h1>
 
         <?php
-        include 'functions.php';
+            include 'functions.php';
         ?>
 
-<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <!-- Id: <input type="text" name="id"><br> -->
-        Enter id of hero for deletion: <input type="text" name="id"><br>
- 
-        <input type="submit">
-    </form>
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <!-- Id: <input type="text" name="id"><br> -->
+            Id of hero to be changed: <input type="text" name="id"><br>
+            <b>New Details:</b><br>
+            New Name: <input type="text" name="name"><br>
+            New About: <input type="text" name="about"><br>
+            New Biography: <input type="text" name="bio">
+            <input type="submit">
+        </form>
 
-    <?php
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
+        <?php
+            if($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $_POST['id'];
-            delete_hero($id);
-        }
-    ?>
+            $name = $_POST['name'];
+            $about = $_POST['about'];
+            $bio = $_POST['bio'];
+
+            modify_hero($id, $name, $about, $bio);
+            }
+        ?>
 
     </div>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

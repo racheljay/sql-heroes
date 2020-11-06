@@ -21,7 +21,10 @@
                 <p class="lead">Who's your nemisis?</p>
             </div>
         </div>
-        <a href="/add-hero.php">Add Hero</a>
+        <a href="/add-hero.php">Add Hero</a> | 
+        <a href="/delete-hero.php">Remove Hero</a> | 
+        <a href="/edit_hero.php">Edit Details</a>
+
         <div class="row">
 
 <?php
@@ -31,7 +34,7 @@ include 'functions.php';
 // $sql = "SELECT name, about_me FROM heroes";
 $result = get_heroes();
 
-$output = "";
+// $output = "";
 
 if ($result->num_rows > 0) {
     //output data of each row
@@ -41,7 +44,7 @@ if ($result->num_rows > 0) {
         
             
         
-        <div class="card col-4" style="width: 18rem;">
+        <div class="card col-3" style="width: 18rem;">
             <img class="card-img-top" src="profile-icon.png" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><?php echo $row["name"] ?></h5>

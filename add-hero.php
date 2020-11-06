@@ -14,14 +14,12 @@
 <body>
     <a href="/index.php">Home</a>
     <div class="container">
-    <h1>create heroes</h1>
+    <h1>create heroes:</h1>
 
     <?php
-
     include 'functions.php';
-
-
     ?>
+
     <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <!-- Id: <input type="text" name="id"><br> -->
         Name: <input type="text" name="name"><br>
@@ -50,20 +48,21 @@
         if (empty($name)) {
             echo "name is empty";
         } else {
-            echo $name;
+            // echo $name;
         }
 
         if (empty($about)) {
             echo "about is empty";
         } else {
-            echo $about;
+            // echo $about;
         }
         
         if (empty($bio)) {
             echo "bio is empty";
         } else {
-            echo $bio;
+            // echo $bio;
         }
+        echo "Hero submitted";
         create_hero($name, $about, $bio);
     }
     ?>

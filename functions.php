@@ -50,26 +50,59 @@ function create_hero($name, $about, $bio)
     }
 
     return $conn;
+
+    $conn->close();
 }
 
-function modify_hero($conn)
+function modify_hero($id, $name, $about, $bio)
 {
-    $sql = "UPDATE heroes SET about_me='Dwigt' WHERE id='8'";
+    $servername = "localhost";
+    $username = "root";
+    $password = "root";
+    $database = "sqlheroes";
+
+    //create connection
+
+    $conn = new mysqli($servername, $username, $password, $database);
+
+    //check connection
+    if ($conn->connection) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "UPDATE heroes SET name='$name', about_me='$about', biography='$bio' WHERE id='$id'";
     if ($conn->query($sql) === TRUE) {
-        // echo "Record updated successfully";
+        echo "Record updated successfully";
     } else {
         echo "Error updating record: " . $conn->error;
     }
+
+    $conn->close();
 }
 
-function delete_hero($conn)
+function delete_hero($id)
 {
-    $sql = "DELETE FROM heroes WHERE id='8'";
+    $servername = "localhost";
+    $username = "root";
+    $password = "root";
+    $database = "sqlheroes";
+
+    //create connection
+
+    $conn = new mysqli($servername, $username, $password, $database);
+
+    //check connection
+    if ($conn->connection) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "DELETE FROM heroes WHERE id='$id'";
     if ($conn->query($sql) === TRUE) {
         // echo "Record deleted successfully";
     } else {
         echo "Error deleting record: " . $conn->error;
     }
+    $conn->close();
 }
 
 
