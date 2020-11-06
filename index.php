@@ -25,7 +25,7 @@
         <a href="/delete-hero.php">Remove Hero</a> | 
         <a href="/edit_hero.php">Edit Details</a>
 
-        <div class="row">
+<div class="row">
 
 <?php
 
@@ -40,16 +40,12 @@ if ($result->num_rows > 0) {
     //output data of each row
     while ($row = $result->fetch_assoc()) {
         // $output .=  "<li>" . $row["name"] . " " . $row["about_me"] . "</li>";
-?>
-        
-            
-        
+?>       
         <div class="card col-3" style="width: 18rem;">
             <img class="card-img-top" src="profile-icon.png" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><?php echo $row["name"] ?></h5>
                 <p class="card-text"><?php echo $row["about_me"] ?></p>
-                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
         </div>
 <?php
@@ -58,18 +54,40 @@ if ($result->num_rows > 0) {
     $output = "0 results";
 }
 // $conn->close();
+?>
+</div>
 
+<?php
+// get_ability(1);
+$info = get_heroes();
 
+    if($info->num_rows > 0) {
+        //output data of each row
+        while($row = $info->fetch_assoc()) {
 ?>
 
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><?php echo $row["name"]?></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><?php echo $row["about_me"] ?></h6>
+    <p class="card-text"><?php echo $row["biography"] ?></p>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">Ability: <?php echo get_ability($row['id'])?></li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
 
-
+  </div>
 </div>
-        <ul>
-            <?php
-            // echo $output;
-            ?>
-        </ul>
+
+<?php
+
+        }
+    } else {
+        $output = "0 results";
+    }
+?>
+        
 
     </main>
 

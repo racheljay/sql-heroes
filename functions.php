@@ -120,3 +120,31 @@ function get_heroes()
     stop_server($conn);
     return $data;
 }
+
+function get_ability($id) {
+    $conn = start_server();
+    // $sql = "SELECT ability FROM abilities WHERE ability_id in (SELECT ability_id FROM ability_heroes WHERE hero_id='$id');";
+
+    
+    // $data3 = $conn->query($sql);
+    // var_dump($data3->fetch_assoc());
+    // return $data3->fetch_assoc()['ability'];
+
+    $data = $conn->query("SELECT ability_id FROM ability_hero WHERE hero_id='$id'");
+
+    
+    if($data->num_rows > 0) {
+        //output data of each row
+        while($row = $data->fetch_assoc()) {
+            // var_dump($row['hero_id']);
+            $aid = $row['ability_id'];
+            // var_dump($aid);
+            $data2 = $conn->query("SELECT ability FROM abilities WHERE id='$aid'");
+            return $data2->fetch_assoc()['ability'];
+            // var_dump($row);
+        }
+    }
+    
+    
+}
+
